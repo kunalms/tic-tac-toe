@@ -30,11 +30,17 @@ git commit -m "created $1 build - app version_$VERSION"
 git push origin
 
 # increment the version
+cd frontend
+npm version $1
+VERSION=$(readJson package.json version) || exit 1
+git add frontend
+git commit -m "created new frontend version_$VERSION"
+cd ..
 npm version $1
 VERSION=$(readJson package.json version) || exit 1
 echo "creating new build $VERSION"
 git add . -A
-git commit -m "created new version_$VERSION"
+git commit -m "created new app version_$VERSION"
 git push origin
 
 # deploy the changes to aws
