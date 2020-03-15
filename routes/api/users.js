@@ -10,7 +10,7 @@ router.get('/user', auth.required, function (req, res, next) {
       return res.sendStatus(401);
     }
 
-    return res.json({user: user.toAuthJSON()});
+    return res.json(user.toAuthJSON());
   }).catch(next);
 });
 

@@ -14,6 +14,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {FlexLayoutModule} from '@angular/flex-layout';
 
+import {SocketIoConfig, SocketIoModule} from 'ngx-socket-io';
+import {environment} from '../environments/environment';
+
+const config: SocketIoConfig = {url: environment.socketUrl, options: {}};
+
 @NgModule({
   declarations: [
     AppComponent
@@ -28,7 +33,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

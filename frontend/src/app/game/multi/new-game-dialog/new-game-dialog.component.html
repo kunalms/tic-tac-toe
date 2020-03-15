@@ -1,0 +1,20 @@
+<div mat-dialog-content>
+  <label id="example-radio-group-label">Please select any one of the following</label>
+  <mat-radio-group
+    [(ngModel)]="userSelection.mode"
+    aria-labelledby="example-radio-group-label"
+    class="example-radio-group">
+    <mat-radio-button *ngFor="let mode of modes" [value]="mode.value" class="example-radio-button">
+      {{mode.placeHolder}}
+    </mat-radio-button>
+  </mat-radio-group>
+  <mat-form-field *ngIf="userSelection.mode === 'joinGame'" class="full-width-input">
+    <mat-label>Game Code</mat-label>
+    <input [(ngModel)]="userSelection.gameCode" matInput placeholder="Enter the game code here..">
+  </mat-form-field>
+</div>
+<div fxLayout="row" fxLayoutAlign="end" mat-dialog-actions>
+  <button [disabled]="isOkBtnDisabled()" [mat-dialog-close]="userSelection" color="primary"
+          mat-raised-button>Ok
+  </button>
+</div>

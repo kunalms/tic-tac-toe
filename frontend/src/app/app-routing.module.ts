@@ -5,8 +5,8 @@ import {AuthGuard} from './helpers/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/game',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    redirectTo: 'game'
   },
   {
     path: 'verification',

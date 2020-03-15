@@ -4,11 +4,11 @@ import Minimax from 'tic-tac-toe-minimax';
 const {GameStep} = Minimax;
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.scss']
+  selector: 'app-single',
+  templateUrl: './single.component.html',
+  styleUrls: ['./single.component.scss']
 })
-export class GameComponent implements OnInit {
+export class SingleComponent implements OnInit {
 
   public gameState: Array<number | string> = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   public winner: string;

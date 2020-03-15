@@ -1,3 +1,15 @@
+<nav mat-tab-nav-bar>
+  <a [active]="true" fxFlex="50%"
+     mat-tab-link
+     routerLink="/game/single">
+    Single Player
+  </a>
+  <a [active]="false" fxFlex="50%"
+     mat-tab-link
+     routerLink="/game/multi">
+    Multi Player
+  </a>
+</nav>
 <mat-card class="mat-elevation-z4">
   <mat-card-content>
     <div [ngClass]="{'tic-tac-toe': true, playing: playing}">
@@ -7,7 +19,7 @@
     </div>
   </mat-card-content>
 </mat-card>
-<mat-card style="padding: 0">
+<mat-card style="padding: 0; margin-bottom: 0">
   <mat-card-content>
     <div *ngIf="playing">
       <h3>Your Move</h3>
