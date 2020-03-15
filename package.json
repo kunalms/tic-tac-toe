@@ -1,0 +1,33 @@
+{
+  "name": "node-express",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./app.js",
+    "build-frontend-prod": "cd frontend && npm run build-prod && cd ..",
+    "build-frontend-dev": "cd frontend && npm run build-dev-watch && cd ..",
+    "deploy:patch": "sh deploy.sh patch",
+    "deploy:minor": "sh deploy.sh minor",
+    "deploy:major": "sh deploy.sh major"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.639.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "errorhandler": "^1.5.1",
+    "express": "~4.16.1",
+    "express-jwt": "^5.3.1",
+    "express-session": "^1.17.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "^3.0.0",
+    "mongoose": "4.4.10",
+    "mongoose-unique-validator": "^2.0.3",
+    "morgan": "~1.9.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "slug": "^2.1.1"
+  }
+}
