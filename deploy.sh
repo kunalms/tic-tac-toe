@@ -39,4 +39,3 @@ git push origin
 
 # deploy the changes to aws
 eb deploy
-
