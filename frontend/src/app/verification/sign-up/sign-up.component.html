@@ -1,0 +1,71 @@
+<div class="mat-card-wrapper" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="mat-elevation-z4" ngClass.gt-xs="card-gt-xs" ngClass.lt-sm="card-lt-sm">
+    <mat-card-content>
+      <nav mat-tab-nav-bar>
+        <a [active]="false" fxFlex="50%"
+           mat-tab-link
+           routerLink="/verification/login">
+          Login
+        </a>
+        <a [active]="true" fxFlex="50%"
+           mat-tab-link
+           routerLink="/verification/signup">
+          Sign Up
+        </a>
+      </nav>
+      <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="padding-16" fxLayout="column"
+            fxLayoutAlign="center">
+        <mat-error *ngIf="loginInvalid">
+          The email and password were not recognised
+        </mat-error>
+        <mat-error *ngIf="signUpForm.errors?.notSame">
+          password and confirm password fields don't match
+        </mat-error>
+        <!-- email -->
+        <mat-form-field class="full-width-input">
+          <input formControlName="email" matInput placeholder="Email" required>
+          <mat-error>
+            Please provide a valid email address
+          </mat-error>
+        </mat-form-field>
+        <div fxLayout="row" fxLayoutGap="10px">
+          <!-- first name -->
+          <mat-form-field class="full-width-input" fxFlex="calc(50% - 5px)">
+            <input formControlName="firstName" matInput placeholder="First name">
+          </mat-form-field>
+          <!-- last name -->
+          <mat-form-field class="full-width-input" fxFlex="calc(50% - 5px)">
+            <input formControlName="lastName" matInput placeholder="Last name">
+          </mat-form-field>
+        </div>
+        <!-- User name -->
+        <mat-form-field class="full-width-input">
+          <input formControlName="username" matInput placeholder="User name" required>
+          <mat-error>
+            Please provide a username.
+          </mat-error>
+        </mat-form-field>
+        <!-- password -->
+        <mat-form-field class="full-width-input">
+          <input formControlName="password" matInput placeholder="Password" required type="password">
+          <mat-error>
+            Please provide a valid password
+          </mat-error>
+        </mat-form-field>
+        <!-- confirm password -->
+        <mat-form-field class="full-width-input">
+          <input formControlName="confirmPassword" matInput placeholder="Confirm Password" required type="password">
+          <mat-error>
+            Please re type the password
+          </mat-error>
+          <mat-error *ngIf="signUpForm.hasError('notSame')">
+            Passwords do not match
+          </mat-error>
+        </mat-form-field>
+        <button class="margin-top-10" color="primary" mat-raised-button>Sign Up</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+<app-spinner *ngIf="loading"></app-spinner>
+
