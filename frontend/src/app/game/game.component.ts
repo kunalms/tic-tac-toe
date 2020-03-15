@@ -44,7 +44,7 @@ export class GameComponent implements OnInit {
     };
 
     const winnerMapping = {
-      huPlayer: 'Human Wins!',
+      huPlayer: 'Yay 🙌 You Win!',
       aiPlayer: 'Computer Wins!',
       draw: 'It\'s a Draw!'
     };

@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="mat-elevation-z4">
   <mat-card-content>
     <div [ngClass]="{'tic-tac-toe': true, playing: playing}">
       <div (click)="makeHumanMove(i)" *ngFor="let field of gameState; let i = index" class="game-field">
@@ -7,7 +7,7 @@
     </div>
   </mat-card-content>
 </mat-card>
-<mat-card>
+<mat-card style="padding: 0">
   <mat-card-content>
     <div *ngIf="playing">
       <h3>Your Move</h3>
@@ -16,13 +16,13 @@
       <h3>{{winner || "Start a new game"}}</h3>
     </div>
     <button (click)="toggleGame(true)" *ngIf="!playing" color="primary" mat-raised-button>Start</button>
-    <button (click)="toggleGame(false)" *ngIf="playing" color="primary" mat-raised-button>Reset</button>
+    <button (click)="toggleGame(false)" *ngIf="playing" color="accent" mat-raised-button>Reset</button>
 
-    <mat-slide-toggle [(ngModel)]="computerFirst">Computer Moves First</mat-slide-toggle>
+    <mat-slide-toggle [(ngModel)]="computerFirst" [disabled]="playing">Computer Moves First</mat-slide-toggle>
 
     <mat-form-field>
       <mat-label>Difficulty</mat-label>
-      <mat-select [(ngModel)]="difficulty">
+      <mat-select [(ngModel)]="difficulty" [disabled]="playing">
         <mat-option value="Easy">Easy</mat-option>
         <mat-option value="Normal">Normal</mat-option>
         <mat-option value="Hard">Hard</mat-option>
