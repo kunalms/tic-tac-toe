@@ -103,10 +103,8 @@ io.on('connection', function (socket) {
      * Connect the Player 2 to the room he requested. Show error if room full.
      */
     socket.on('joinGame', function (data) {
-        console.log('joinGame request', data);
         var room = io.nsps['/'].adapter.rooms[data.room];
         if (room && room.length === 1) {
-            console.log(data.room);
             socket.join(data.room);
             console.log('playerJoined', data.room);
             socket.broadcast.to(data.room).emit('playerJoined', {name: data.name});
@@ -119,16 +117,17 @@ io.on('connection', function (socket) {
      * Complete the game setup and share the info on both the sides
      */
     socket.on('gameSetup', function (data) {
-        socket.broadcast.to(data.gameState.room).emit('setupComplete', data.gameState);
+        console.log('gameSetup', data);
+        socket.broadcast.to(data.room).emit('setupComplete', data);
     });
 
     /**
      * Handle the turn played by either player and notify the other.
      */
-    socket.on('playTurn', function (data) {
-        socket.broadcast.to(data.room).emit('turnPlayed', {
-            tile: data.tile,
-            room: data.room
+    socket.on('playerTurn', function (data) {
+        console.log('playerTurn', data);
+        socket.broadcast.to(data.room).emit('opponentMoved', {
+            gameState: data.gameState
         });
     });
 
