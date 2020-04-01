@@ -44,4 +44,4 @@ git commit -m "created new app version_$VERSION"
 git push origin
 
 # deploy the changes to aws
-eb deploy
+#eb deploy
