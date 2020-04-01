@@ -1,71 +1,113 @@
-<div class="mat-card-wrapper" fxLayout="row" fxLayoutAlign="center center">
-  <mat-card class="mat-elevation-z4" ngClass.gt-xs="card-gt-xs" ngClass.lt-sm="card-lt-sm">
-    <mat-card-content>
-      <nav mat-tab-nav-bar>
-        <a [active]="false" fxFlex="50%"
-           mat-tab-link
-           routerLink="/verification/login">
-          Login
-        </a>
-        <a [active]="true" fxFlex="50%"
-           mat-tab-link
-           routerLink="/verification/signup">
-          Sign Up
-        </a>
-      </nav>
-      <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="padding-16" fxLayout="column"
-            fxLayoutAlign="center">
-        <mat-error *ngIf="loginInvalid">
-          The email and password were not recognised
-        </mat-error>
-        <mat-error *ngIf="signUpForm.errors?.notSame">
-          password and confirm password fields don't match
-        </mat-error>
-        <!-- email -->
-        <mat-form-field class="full-width-input">
-          <input formControlName="email" matInput placeholder="Email" required>
-          <mat-error>
-            Please provide a valid email address
-          </mat-error>
-        </mat-form-field>
-        <div fxLayout="row" fxLayoutGap="10px">
-          <!-- first name -->
-          <mat-form-field class="full-width-input" fxFlex="calc(50% - 5px)">
-            <input formControlName="firstName" matInput placeholder="First name">
-          </mat-form-field>
-          <!-- last name -->
-          <mat-form-field class="full-width-input" fxFlex="calc(50% - 5px)">
-            <input formControlName="lastName" matInput placeholder="Last name">
-          </mat-form-field>
+<div fxLayout="row" fxLayout.xs="column">
+  <!-- Common code -->
+  <ng-template #commonTemplate>
+    <div class="mat-card-wrapper" fxLayout="row" fxLayoutAlign="center center">
+      <mat-card class="mat-elevation-z4" ngClass.gt-xs="card-gt-xs" ngClass.lt-sm="card-lt-sm">
+        <mat-card-content>
+          <nav mat-tab-nav-bar>
+            <a [active]="false" fxFlex="50%"
+               mat-tab-link routerLink="/verification/login">
+              Login
+            </a>
+            <a [active]="true" fxFlex="50%"
+               mat-tab-link routerLink="/verification/signup">
+              Sign Up
+            </a>
+          </nav>
+          <form (ngSubmit)="onSubmit()" [formGroup]="signUpForm" class="padding-16" fxLayout="column"
+                fxLayoutAlign="center">
+            <mat-error *ngIf="loginInvalid">
+              The email and password were not recognised
+            </mat-error>
+            <mat-error *ngIf="signUpForm.errors?.notSame">
+              password and confirm password fields don't match
+            </mat-error>
+            <!-- email -->
+            <mat-form-field class="full-width-input">
+              <input formControlName="email" matInput placeholder="Email" required>
+              <mat-error>
+                Please provide a valid email address
+              </mat-error>
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutGap="10px">
+              <!-- first name -->
+              <mat-form-field class="full-width-input" fxFlex="calc(50% - 5px)">
+                <input formControlName="firstName" matInput placeholder="First name">
+              </mat-form-field>
+              <!-- last name -->
+              <mat-form-field class="full-width-input" fxFlex="calc(50% - 5px)">
+                <input formControlName="lastName" matInput placeholder="Last name">
+              </mat-form-field>
+            </div>
+            <!-- User name -->
+            <mat-form-field class="full-width-input">
+              <input formControlName="username" matInput placeholder="User name" required>
+              <mat-error>
+                Please provide a username.
+              </mat-error>
+            </mat-form-field>
+            <!-- password -->
+            <mat-form-field class="full-width-input">
+              <input formControlName="password" matInput placeholder="Password" required type="password">
+              <mat-error>
+                Please provide a valid password
+              </mat-error>
+            </mat-form-field>
+            <!-- confirm password -->
+            <mat-form-field class="full-width-input">
+              <input formControlName="confirmPassword" matInput placeholder="Confirm Password" required type="password">
+              <mat-error>
+                Please re type the password
+              </mat-error>
+              <mat-error *ngIf="signUpForm.hasError('notSame')">
+                Passwords do not match
+              </mat-error>
+            </mat-form-field>
+            <button class="margin-top-10" color="primary" mat-raised-button>Sign Up</button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </ng-template>
+  <!-- Web -->
+  <div fxFlex="50%" fxShow="false" fxShow.gt-sm>
+    <ng-container [ngTemplateOutlet]="commonTemplate"></ng-container>
+  </div>
+  <div class="desktop-column-outer" fxFlex="50%" fxShow="false" fxShow.gt-sm>
+    <div class="desktop-column-background">
+      <div class="description-root">
+        <div class="description-container">
+          <div>
+            <div fxLayout="row" fxLayoutAlign="start center"><img alt="app logo" src="assets/app-logo.png"
+                                                                  style="height: 64px;">
+              <h2 style="margin: 0 8px">Cryptoticker</h2></div>
+            <p>Cryptoticker is a web based platform that helps you keep a track of all your crypto currencies on the
+              fly.
+              Tracking of all your favourite crypto currencies is now easier.</p>
+          </div>
+          <div>
+            <h3>Key Features</h3>
+            <ul>
+              <li>Accessible anywhere across the globe.</li>
+              <li>Secured using advance encryption algorithms.</li>
+              <li>Faster than a native mobile application.</li>
+              <li>Helps you keep tracks by means of watchlist.</li>
+              <li>Responsive in nature, works on all internet enabled devices.</li>
+              <li>Extremely user friendly.</li>
+            </ul>
+          </div>
+          <div>
+            <h2>Made with ❤️ by <a href="https://github.com/kunalms" target="_blank"> Kunal Sharma</a></h2>
+            <p>Find the source code on <a href="https://github.com/kunalms/cryptoticker-web" target="_blank">Github</a>
+            </p>
+          </div>
         </div>
-        <!-- User name -->
-        <mat-form-field class="full-width-input">
-          <input formControlName="username" matInput placeholder="User name" required>
-          <mat-error>
-            Please provide a username.
-          </mat-error>
-        </mat-form-field>
-        <!-- password -->
-        <mat-form-field class="full-width-input">
-          <input formControlName="password" matInput placeholder="Password" required type="password">
-          <mat-error>
-            Please provide a valid password
-          </mat-error>
-        </mat-form-field>
-        <!-- confirm password -->
-        <mat-form-field class="full-width-input">
-          <input formControlName="confirmPassword" matInput placeholder="Confirm Password" required type="password">
-          <mat-error>
-            Please re type the password
-          </mat-error>
-          <mat-error *ngIf="signUpForm.hasError('notSame')">
-            Passwords do not match
-          </mat-error>
-        </mat-form-field>
-        <button class="margin-top-10" color="primary" mat-raised-button>Sign Up</button>
-      </form>
-    </mat-card-content>
-  </mat-card>
+      </div>
+    </div>
+  </div>
+  <!-- Mobile  -->
+  <div fxHide="false" fxHide.gt-sm>
+    <ng-container [ngTemplateOutlet]="commonTemplate"></ng-container>
+  </div>
 </div>
 <app-spinner *ngIf="loading"></app-spinner>
-
