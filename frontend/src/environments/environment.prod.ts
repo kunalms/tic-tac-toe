@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  socketUrl: 'http://tictactoe-prod.eba-ec9xkp6z.ap-south-1.elasticbeanstalk.com'
+  socketUrl: 'http://ec2-13-233-198-229.ap-south-1.compute.amazonaws.com:3001'
 };
