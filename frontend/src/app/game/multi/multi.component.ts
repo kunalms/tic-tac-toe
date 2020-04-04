@@ -13,8 +13,8 @@ import {MultiPlayerHelperService} from './helpers/multi-player-helper.service';
 })
 export class MultiComponent implements OnInit {
 
-  public currUserName: string;
-  public opponentName: string;
+  public currUserName = 'Player 1';
+  public opponentName: 'Player 2';
 
   isPlayerOne = true;
 
@@ -31,9 +31,6 @@ export class MultiComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userService.getUserInfo().subscribe(user => {
-      this.currUserName = user.firstname || user.username;
-    });
     const dialogRef = this.dialog.open(NewGameDialogComponent, {width: '310px', disableClose: true});
     dialogRef.afterClosed().subscribe((result: GameConfig) => {
       // if user has request for a new game emit a createGame event.
