@@ -14,7 +14,7 @@ import {MultiPlayerHelperService} from './helpers/multi-player-helper.service';
 export class MultiComponent implements OnInit {
 
   public currUserName = 'Player 1';
-  public opponentName: 'Player 2';
+  public opponentName: string;
 
   isPlayerOne = true;
 

@@ -52,7 +52,7 @@ app.use(function (req, res, next) {
 // development error handler
 // will print stacktrace
 if (!isProduction) {
-    app.use(function (err, req, res, next) {
+    app.use(function (err, req, res) {
         console.log(err.stack);
 
         res.status(err.status || 500);
@@ -68,7 +68,7 @@ if (!isProduction) {
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     res.status(err.status || 500);
     res.json({
         'errors': {
@@ -88,15 +88,13 @@ var rooms = 0;
 var io = socketIo(server);
 
 io.on('connection', function (socket) {
-    console.log('a user connected');
 
     /**
      * Create a new game room and notify the creator of game.
      */
     socket.on('createGame', function (data) {
-        console.log('createGame request', data);
         socket.join('room-' + ++rooms);
-        socket.emit('newGame', {name: data.name, room: 'room-' + rooms});
+        socket.emit('newGame', {name: 'Player 1', room: 'room-' + rooms});
     });
 
     /**
@@ -106,8 +104,7 @@ io.on('connection', function (socket) {
         var room = io.nsps['/'].adapter.rooms[data.room];
         if (room && room.length === 1) {
             socket.join(data.room);
-            console.log('playerJoined', data.room);
-            socket.broadcast.to(data.room).emit('playerJoined', {name: data.name});
+            socket.broadcast.to(data.room).emit('playerJoined', {name: 'Player 2'});
         } else {
             socket.emit('err', {message: 'Sorry, The room is full!'});
         }
@@ -117,7 +114,6 @@ io.on('connection', function (socket) {
      * Complete the game setup and share the info on both the sides
      */
     socket.on('gameSetup', function (data) {
-        console.log('gameSetup', data);
         socket.broadcast.to(data.room).emit('setupComplete', data);
     });
 
@@ -125,7 +121,6 @@ io.on('connection', function (socket) {
      * Handle the turn played by either player and notify the other.
      */
     socket.on('playerTurn', function (data) {
-        console.log('playerTurn', data);
         socket.broadcast.to(data.room).emit('opponentMoved', {
             gameState: data.gameState
         });
@@ -139,6 +134,5 @@ io.on('connection', function (socket) {
     });
 
     socket.on('disconnect', function () {
-        console.log('user disconnected');
     })
 });
